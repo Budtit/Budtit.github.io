@@ -370,6 +370,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -379,16 +382,16 @@
 <a id="more"></a>
 
 <p>brew 安装mysql</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>mysql </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">brew install mysql <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>启动mysql服务</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql.<span class="keyword">server</span> <span class="keyword">start</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">mysql.server start<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 <p>配置mysql</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql_secure_installation</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">mysql_secure_installation<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>按照提示一路配置下来就完成了。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mysql -uroot -p</span> </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">mysql -uroot -p <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输入密码成功进入mysql</p>
 <p><img src="/2020/mac%E5%AE%89%E8%A3%85mysql/1.png"></p>
 
@@ -471,7 +474,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -1002,7 +1005,16 @@ $(function () {
     <!--腾讯兔小巢-->
     
     
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.4'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
 
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
     
 
     

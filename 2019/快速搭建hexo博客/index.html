@@ -362,7 +362,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    976
+                    977
                 </div>
                 
 
@@ -378,6 +378,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
@@ -398,7 +401,11 @@
 <h3 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h3><p>Node.js是一个Javascript运行环境，是一个让 JavaScript 运行在服务端的开发平台，我们用来快速生成博客的静态页面，LTS版本为长期支持版，CURRENT版本为最新版，任选一个正常安装即可<a target="_blank" rel="noopener" href="https://nodejs.org/en/">下载地址</a>。</p>
 <h2 id="二、开始本地搭建博客"><a href="#二、开始本地搭建博客" class="headerlink" title="二、开始本地搭建博客"></a>二、开始本地搭建博客</h2><h3 id="1-新建本地文件夹"><a href="#1-新建本地文件夹" class="headerlink" title="1. 新建本地文件夹"></a>1. 新建本地文件夹</h3><p>在本地新建一个文件夹用来储存我们的博客，Git Bash进入文件夹下，执行命令：<code>npm install hexo -g</code> 用来安装hexo，</p>
 <h3 id="2-搭建本地服务"><a href="#2-搭建本地服务" class="headerlink" title="2. 搭建本地服务"></a>2. 搭建本地服务</h3><p>依次在本地文件夹根目录下执行以下命令初始化并生成服务。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init    <span class="comment"># 初始化</span></span><br><span class="line">npm <span class="keyword">install</span>    <span class="comment"># 安装npm依赖包 </span></span><br><span class="line">hexo generate   <span class="comment"># 生成静态网页</span></span><br><span class="line">hexo <span class="keyword">server</span>    <span class="comment"># 生成本地服务</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">hexo init    # 初始化
+npm install    # 安装npm依赖包 
+hexo generate   # 生成静态网页
+hexo server    # 生成本地服务
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>全部执行成功后浏览器访问<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a>,如果出现默认的hexo博客，那么我们本地搭建博客就完成了</p>
 <div align="center">
 
@@ -426,12 +433,17 @@
 </div>
 - 在更改本地目录下的_config.yml配置文件，最后加上.
 
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> 这里填刚记录的ssh地址</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">deploy:
+  type: git
+  repo: 这里填刚记录的ssh地址
+  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="2-将Hexo与-Github连接"><a href="#2-将Hexo与-Github连接" class="headerlink" title="2. 将Hexo与 Github连接"></a>2. 将Hexo与 Github连接</h3><ul>
 <li>按照如下格式输入</li>
 </ul>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.name</span> <span class="string">&quot;yourname&quot;</span></span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.email</span> <span class="string">&quot;youremail&quot;</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;youremail&quot;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">git config --global user.name &quot;yourname&quot;
+git config --global user.email &quot;youremail&quot;
+ssh-keygen -t rsa -C &quot;youremail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div align="center"> 
 
 <p><img src="/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/5.png"></p>
@@ -449,20 +461,22 @@
 <ul>
 <li>测试是否成功</li>
 </ul>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git<span class="symbol">@github</span>.com   <span class="meta">#注意这里的地址不用改</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com   #注意这里的地址不用改<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>提示Are you sure you want to continue connecting (yes/no)?时输入yes<br>当看到Hi Budtit! You’ve successfully authenticated, but GitHub does not provide shell access.时说明配置成功</p>
-<h3 id="3-部署到github"><a href="#3-部署到github" class="headerlink" title="3. 部署到github"></a>3. 部署到github</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo d</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-部署到github"><a href="#3-部署到github" class="headerlink" title="3. 部署到github"></a>3. 部署到github</h3><pre class="line-numbers language-none"><code class="language-none">hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果报错说not found git 我们执行以下命令：<code>npm install hexo-deployer-git --save</code> 安装插件，然后在执行上一步命令第一次部署应该会让登录，浏览yourname.github.io成功显示博客页</p>
-<h2 id="四、写作并上传第一篇博客"><a href="#四、写作并上传第一篇博客" class="headerlink" title="四、写作并上传第一篇博客"></a>四、写作并上传第一篇博客</h2><h3 id="1-写作"><a href="#1-写作" class="headerlink" title="1. 写作"></a>1. 写作</h3><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> [layout] &lt;<span class="built_in">title</span>&gt;  <span class="meta">#创建新文章</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、写作并上传第一篇博客"><a href="#四、写作并上传第一篇博客" class="headerlink" title="四、写作并上传第一篇博客"></a>四、写作并上传第一篇博客</h2><h3 id="1-写作"><a href="#1-写作" class="headerlink" title="1. 写作"></a>1. 写作</h3><pre class="line-numbers language-none"><code class="language-none">hexo new [layout] &lt;title&gt;  #创建新文章<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div align="center">
 
 <p><img src="/2019/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/7.png"></p>
 </div>
 创建后会在本地目录生成测试.md文件，用markdown语法编辑文件后保存，建议每次写作后本地部署完成进入http://localhost:4000 查看无误后再上传。
 
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">server</span>    <span class="meta"># 本地服务部署  可简写为hexo s</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">hexo server    # 本地服务部署  可简写为hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="2-上传"><a href="#2-上传" class="headerlink" title="2. 上传"></a>2. 上传</h3><p>依次执行命令，hexo的具体用法请查看官方文档 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">戳这里</a></p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean    # 清除缓存</span><br><span class="line">hexo <span class="keyword">generate</span>   # 生成静态页面  可简写为hexo g</span><br><span class="line">hexo deploy	   # 部署博客  可简写为hexo d</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">hexo clean    # 清除缓存
+hexo generate   # 生成静态页面  可简写为hexo g
+hexo deploy	   # 部署博客  可简写为hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="五、解析私人域名"><a href="#五、解析私人域名" class="headerlink" title="五、解析私人域名"></a>五、解析私人域名</h2><p>这里就要买域名了，我这里是在腾讯买的，如图添加两条记录</p>
 <div align="center"> 
@@ -564,7 +578,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -1096,7 +1110,16 @@ $(function () {
     <!--腾讯兔小巢-->
     
     
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.4'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
 
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
     
 
     

