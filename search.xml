@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>对SQL注入过程在注释方式的思考</title>
+      <link href="2021/%E5%AF%B9SQL%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B%E5%9C%A8%E6%B3%A8%E9%87%8A%E6%96%B9%E5%BC%8F%E7%9A%84%E6%80%9D%E8%80%83/"/>
+      <url>2021/%E5%AF%B9SQL%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B%E5%9C%A8%E6%B3%A8%E9%87%8A%E6%96%B9%E5%BC%8F%E7%9A%84%E6%80%9D%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<p>初学sql注入，一点思考！</p><a id="more"></a><p>在mysq语句中注释符为<code>#</code>，<code>--空格</code>，<code>/**/</code>，<br>然而http请求中#用来指导浏览器动作的，实际传输中#及后面的内容不会包含在实际的请求中，<br>使用‘–空格’时，url中以空格为结尾则会自动忽略掉空格，因此实际传输的只有‘–’，<br>/**/显然不适用与sql注入过程.</p><p>因此就有了想办法构造出‘#’和‘–空格’的办法</p><ul><li>可以采用#的url编码’%23‘来代替。</li><li>利用url规范问题，‘+’会被解析为空格，因此用‘–+’构造出‘–空格’</li><li>同时我们也可以采用’–%20‘构造‘–空格’</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+            <tag> SQL注入 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>thinkphp 5.0.23 rce 漏洞复现</title>
       <link href="2021/thinkphp5.0.23rce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
       <url>2021/thinkphp5.0.23rce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</url>
